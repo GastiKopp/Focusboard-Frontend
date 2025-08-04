@@ -1,69 +1,51 @@
-# React + TypeScript + Vite
+# FocusBoard Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✨ Aplicación web de productividad personal que permite a los usuarios registrarse, iniciar sesión y gestionar sus tareas diarias.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React](https://reactjs.org/) con [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- Context API para manejo de autenticación
+- Fetch API con JWT para consumo del backend
 
-## Expanding the ESLint configuration
+## 🔐 Funcionalidades actuales
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Registro con nombre completo, email y contraseña
+- Inicio de sesión con persistencia en localStorage
+- Navbar dinámico (según si el usuario está logueado)
+- Logout y redirección segura
+- Validaciones visuales en formularios
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Configuración local
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. Clonar el repo:
+   ```bash
+   git clone https://github.com/GastiKopp/Focusboard-frontend.git
+   cd focusboard-frontend
+   ```
+2. Instalar dependencias:
+    ```bash
+    npm install
+    ```
+3. Crear archivo .env en la raíz:
+   ```bash
+   VITE_API_URL=http://localhost:4000
+   ```
+4. Iniciar servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+   Asegurate de tener el backend corriendo en http://localhost:4000
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📂 Estructura
+```bash
+src/
+├── components/     # Navbar, etc.
+├── context/        # AuthContext con login y logout
+├── pages/          # Login, Register, Dashboard
+├── services/       # authService para llamadas HTTP
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
