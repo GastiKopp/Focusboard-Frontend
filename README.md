@@ -25,10 +25,8 @@
    git clone https://github.com/GastiKopp/Focusboard-frontend.git
    cd focusboard-frontend
    ```
-### 2. Instalar dependencias:
-    ```bash
+### 2. Instalar dependencias:   
     npm install
-    ```
 ### 3. Crear archivo .env en la raíz:
    ```bash
    VITE_API_URL=http://localhost:4000
