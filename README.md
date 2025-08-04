@@ -20,20 +20,20 @@
 
 ## 🛠️ Configuración local
 
-1. Clonar el repo:
+### 1. Clonar el repo:
    ```bash
    git clone https://github.com/GastiKopp/Focusboard-frontend.git
    cd focusboard-frontend
    ```
-2. Instalar dependencias:
+### 2. Instalar dependencias:
     ```bash
     npm install
     ```
-3. Crear archivo .env en la raíz:
+### 3. Crear archivo .env en la raíz:
    ```bash
    VITE_API_URL=http://localhost:4000
    ```
-4. Iniciar servidor de desarrollo:
+### 4. Iniciar servidor de desarrollo:
    ```bash
    npm run dev
    ```
@@ -47,5 +47,8 @@ src/
 ├── pages/          # Login, Register, Dashboard
 ├── services/       # authService para llamadas HTTP
 ```
+## ✍️ Autor
 
+Gastón Kopplin - 
+github.com/GastiKopp
 
