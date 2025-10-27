@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -12,6 +11,41 @@ function Navbar() {
     { path: "/dashboard", label: "Panel" },
   ];
 
+  // Título contextual
+  const getTitle = () => {
+    if (location.pathname.startsWith("/dashboard")) return "📋 Tareas";
+    if (location.pathname.startsWith("/nueva")) return "➕ Nueva tarea";
+    if (location.pathname.startsWith("/nueva-categoria")) return "➕ Nueva categoría";
+    if (location.pathname.startsWith("/progreso")) return "📈 Progreso";
+    return "🏠 Inicio";
+  };
+
+  // Acciones rápidas contextuales
+  const getActions = () => {
+    if (location.pathname === "/dashboard") {
+      return (
+        <>
+          <button onClick={() => navigate("/nueva")} className="btn-nav">Crear tarea</button>
+          <button onClick={() => navigate("/nueva-categoria")} className="btn-nav">Crear categoría</button>
+          <button onClick={() => navigate("/progreso")} className="btn-nav">Ver progreso</button>
+        </>
+      );
+    }
+
+    if (
+      location.pathname === "/nueva" ||
+      location.pathname === "/nueva-categoria"
+    ) {
+      return (
+        <button onClick={() => navigate("/dashboard")} className="btn-nav">
+          ⬅ Volver
+        </button>
+      );
+    }
+
+    return null;
+  };
+
   const handleLogout = () => {
     logout();
     navigate("/login");
@@ -19,9 +53,22 @@ function Navbar() {
 
   return (
     <nav className="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-      <h1 className="text-xl font-bold text-blue-600">FocusBoard</h1>
+      <div className="flex items-center gap-6">
+        <h1
+          className="text-xl font-bold text-blue-600 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          FocusBoard
+        </h1>
+
+        <span className="text-lg font-semibold hidden sm:inline-block">{getTitle()}</span>
+      </div>
 
       <ul className="flex gap-4 items-center">
+        {/* Acciones rápidas */}
+        {getActions()}
+
+        {/* Links principales */}
         {navItems.map((item) => (
           <li key={item.path}>
             <Link
@@ -37,10 +84,11 @@ function Navbar() {
           </li>
         ))}
 
+        {/* Login / Logout */}
         {user ? (
           <>
-            <li className="text-gray-800 font-medium">
-              Hola, {user.full_name}
+            <li className="text-gray-800 font-medium hidden sm:block">
+              Hola, {user.full_name.split(" ")[0]} 👋
             </li>
             <li>
               <button

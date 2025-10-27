@@ -38,7 +38,7 @@ export async function register({
   token: string;
   user: { id: number; email: string; full_name: string };
 }> {
-  const res = await fetch(`${API_URL}/api/auth/signup`, {
+const res = await fetch(`${API_URL}/api/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ full_name, email, password }),
